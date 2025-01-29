@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf Card Login</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+</head>
+<body>
+    <!-- Turf Card -->
+    <div class="card position-relative" id="turf-card">
+        <img src="https://via.placeholder.com/500x250" class="card-img-top" alt="Turf Image">
+        <span class="discount-badge"><i class="bi bi-percent"></i> 20% OFF</span>
+        <div class="card-body">
+            <h5 class="card-title fw-bold">The Grid Turf And Cafe</h5>
+            <p class="card-text text-muted"><i class="bi bi-geo-alt-fill text-danger"></i> Ahmedabad</p>
+            <p class="mb-2">Ratings: <span class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
+            <p class="fw-bold">₹600 <span class="text-muted">onwards</span></p>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-primary">Book Now</button>
+                <button class="btn btn-outline-secondary"><i class="bi bi-share-fill"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal for Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS for modal functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Event listener for clicking the card
+        document.getElementById('turf-card').addEventListener('click', function () {
+            // Show the login modal
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {});
+            loginModal.show();
+        });
+
+        // Handle the login form submission
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();  // Prevent default form submission
+
+            // Get the input values
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Mock login check (replace with actual login API)
+            if (username === 'user' && password === 'password') {
+                // Simulate login success
+                localStorage.setItem('isLoggedIn', 'true');  // Store login state
+
+                // Close the login modal
+                var loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                loginModal.hide();
+
+                // Redirect to the dashboard
+                window.location.href = '/dashboard';  // Replace with your dashboard URL
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
